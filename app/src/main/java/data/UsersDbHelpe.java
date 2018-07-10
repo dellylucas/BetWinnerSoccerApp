@@ -2,7 +2,6 @@ package data;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -30,11 +29,8 @@ public class UsersDbHelpe extends SQLiteOpenHelper {
                     + UsersEntry.EMAIL + " TEXT NOT NULL,"
                     + "UNIQUE (" + UsersEntry.ID + "))");
 
-/*            mockLawyer(db, new Users("Carlos Perez", "Abogado 3452534",
-                    true, "Gran prof",
-                    "carlos_perez.jpg"));*/
             }catch (Exception ex){
-String de = "dfsf";
+                String de = "dfsf";
             }
     }
 
@@ -42,16 +38,23 @@ String de = "dfsf";
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    public long mockLawyer(SQLiteDatabase db, Users lawyer) {
-
+    public long InsertUser( Users Use) {
+        SQLiteDatabase db = this.getWritableDatabase();
         return db.insert(
                 UsersEntry.TABLE_NAME,
                 null,
-                lawyer.toContentValues());
+                Use.toContentValues());
     }
 
-    public void consultar(){
+    public int CountReg(){
         SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursors = db.rawQuery("select count(*) from " + UsersEntry.TABLE_NAME, null);
+        cursors.moveToFirst();
+        int var = cursors.getInt(0);
+
+
+        return var;
+       /*
         Cursor c = db.query(
                 UsersEntry.TABLE_NAME,  // Nombre de la tabla
                 null,  // Lista de Columnas a consultar
@@ -61,7 +64,24 @@ String de = "dfsf";
                 null,  // Condición HAVING para GROUP BY
                 null  // Cláusula ORDER BY
         );
-        int hola = c.getCount();
+        int hola = c.getCount();*/
+    }
+        public int LogIn(String us, String pas){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = UsersEntry.NAME + " = ? AND "+ UsersEntry.PASS + " = ?";
+        String selectionArgs[] = new String[]{us,pas};
+
+        int c = db.query(
+                UsersEntry.TABLE_NAME,  // Nombre de la tabla
+                null,  // Lista de Columnas a consultar
+                selection,  // Columnas para la cláusula WHERE
+                selectionArgs,  // Valores a comparar con las columnas del WHERE
+                null,  // Agrupar con GROUP BY
+                null,  // Condición HAVING para GROUP BY
+                null  // Cláusula ORDER BY
+        ).getCount();
+        return  c;
+
     }
 
 }
