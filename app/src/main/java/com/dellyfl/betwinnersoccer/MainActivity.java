@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else {
             tex = "ERROR not ACCESS!";
+            Intent intent = new Intent(this, StageMainActivity.class);
+            startActivity(intent);
+
         }
 
         int durac= Toast.LENGTH_LONG;
