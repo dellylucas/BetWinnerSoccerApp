@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">BetWinnerSoccer</string>
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
+    <string-array name="adm_array">
+        <item>Partidos</item>
+        <item>Usuarios</item>
+        <item>Tabla</item>
+        <item>Configuracion</item>
+        <item>Salir</item>
+    </string-array>
+    <string-array name="usr_array">
+        <item>Partidos</item>
+        <item>Tabla</item>
+        <item>Configuracion</item>
+        <item>Salir</item>
     </string-array>
 </resources>

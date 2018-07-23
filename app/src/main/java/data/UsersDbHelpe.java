@@ -71,16 +71,22 @@ public class UsersDbHelpe extends SQLiteOpenHelper {
         String selection = UsersEntry.NAME + " = ? AND "+ UsersEntry.PASS + " = ?";
         String selectionArgs[] = new String[]{us,pas};
 
-        int c = db.query(
+            Cursor c = db.query(
                 UsersEntry.TABLE_NAME,  // Nombre de la tabla
-                null,  // Lista de Columnas a consultar
+                new String[]{UsersEntry.TYPE},  // Lista de Columnas a consultar
                 selection,  // Columnas para la cláusula WHERE
                 selectionArgs,  // Valores a comparar con las columnas del WHERE
                 null,  // Agrupar con GROUP BY
                 null,  // Condición HAVING para GROUP BY
                 null  // Cláusula ORDER BY
-        ).getCount();
-        return  c;
+        );
+           if( c.moveToFirst()){
+               return c.getInt(c.getColumnIndex(UsersEntry.TYPE));
+           }else {
+               return  -1;
+           }
+
+
 
     }
 

@@ -36,22 +36,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int hol = sd.LogIn(v_user_text.getText().toString(),v_pass_text.getText().toString());
         Toast toas;
-        String tex;
-        if (hol == 1 ) {
+        String tex="";
+        if (hol == 1 || hol == 0 ) {
 
-            tex = "User valid OK!!";
-
-        } else {
-            tex = "ERROR not ACCESS!";
             Intent intent = new Intent(this, StageMainActivity.class);
+            intent.putExtra("ADM", hol);
             startActivity(intent);
 
+        } else {
+            tex = "ERROR User or password!";
+            int durac= Toast.LENGTH_LONG;
+            toas = Toast.makeText(this,tex,durac);
+            toas = Toast.makeText(this,tex,durac);
+            toas.show();
         }
-
-        int durac= Toast.LENGTH_LONG;
-        toas = Toast.makeText(this,tex,durac);
-        toas = Toast.makeText(this,tex,durac);
-        toas.show();
     }
 
     public void NewUser(View v){
