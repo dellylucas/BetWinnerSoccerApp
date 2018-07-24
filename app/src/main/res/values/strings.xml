@@ -13,4 +13,8 @@
         <item>Configuracion</item>
         <item>Salir</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">User fragment fragment</string>
+    <string name="to_blank_fragment">Table fragment </string>
 </resources>
