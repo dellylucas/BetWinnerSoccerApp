@@ -85,9 +85,20 @@ public class UsersDbHelpe extends SQLiteOpenHelper {
            }else {
                return  -1;
            }
+    }
+    public Cursor AllUsers(){
+        SQLiteDatabase db = this.getReadableDatabase();
 
-
-
+        Cursor c = db.query(
+                UsersEntry.TABLE_NAME,
+                new String[]{UsersEntry.NAME},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return c;
     }
 
 }
