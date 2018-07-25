@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //create DB
         sd = new UsersDbHelpe(this);
 
+
         Button buttonNewUser = findViewById(R.id.butLog);
         buttonNewUser.setOnClickListener(this);
     }
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int hol = sd.LogIn(v_user_text.getText().toString(),v_pass_text.getText().toString());
         Toast toas;
-        String tex="";
+        String tex;
         if (hol == 1 || hol == 0 ) {
             Intent intent = new Intent(this, StageMainActivity.class);
             intent.putExtra("ADM", hol);

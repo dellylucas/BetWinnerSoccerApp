@@ -45,6 +45,7 @@ public class NewUserActivity extends AppCompatActivity {
             tex ="User "+user_text.getText().toString()+ " Created succesfull";
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            finish();
         }else {tex="error not created!";
         }
         int durac= Toast.LENGTH_LONG;

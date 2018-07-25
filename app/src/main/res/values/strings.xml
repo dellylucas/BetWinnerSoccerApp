@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">BetWinnerSoccer</string>
-    <string-array name="adm_array">
+    <array name="adm_array">
         <item>Partidos</item>
         <item>Usuarios</item>
         <item>Tabla</item>
         <item>Configuracion</item>
         <item>Salir</item>
-    </string-array>
-    <string-array name="usr_array">
+    </array>
+    <array name="usr_array">
         <item>Partidos</item>
         <item>Tabla</item>
         <item>Configuracion</item>
         <item>Salir</item>
-    </string-array>
+    </array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">User fragment fragment</string>
