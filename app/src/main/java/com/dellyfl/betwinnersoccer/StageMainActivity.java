@@ -4,6 +4,7 @@ package com.dellyfl.betwinnersoccer;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -25,13 +26,15 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
     private ListView mDrawerList;
     private FragmentManager fragmentManager;
     private int IsAdm;
-
+    private UsersFragment Usfragment;
+    private TableFragment Tabfragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stage_main);
         fragmentManager = getSupportFragmentManager();
-
+        Usfragment = new UsersFragment();
+        Tabfragment = new TableFragment();
         Intent intent = getIntent();
 
         IsAdm = (int) intent.getIntExtra("ADM",-1);
@@ -62,16 +65,18 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
             startActivity(intent);
             finish();
         }else{
+            Fragment fr = getSupportFragmentManager().findFragmentByTag("IDUSER");
+
             FragmentTransaction tranu = fragmentManager.beginTransaction();
+            if (fr != null) {
+                tranu.remove(fr);
+            }
             selectItem(position,tranu);
         }
 
     }
 
     private void selectItem(int position,FragmentTransaction tranu) {
-     //   FragmentTransaction tranu = getSupportFragmentManager().beginTransaction();
-        UsersFragment Usfragment = new UsersFragment();
-        TableFragment Tabfragment = new TableFragment();
 
         mDrawerList.setItemChecked(position, true);
         setTitle(mGeneralTitle.get(position));
@@ -83,12 +88,14 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
                 break;
             case "Usuarios":
                 MenuReGenerate("Usuarios");
-                tranu.replace(R.id.frame_stage,Usfragment);
+                Usfragment=new UsersFragment();
+                tranu.replace(R.id.frame_stage,Usfragment, "USER");
                 tranu.commit();
                 break;
             case "Tabla":
                 MenuReGenerate("Tabla");
-                tranu.replace(R.id.frame_stage,Tabfragment);
+                Tabfragment= new TableFragment();
+                tranu.replace(R.id.frame_stage,Tabfragment, "TABLE");
                 tranu.commit();
                 break;
             case "Configuracion":
@@ -110,13 +117,26 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        return super.onKeyDown(keyCode, event);
+
+            if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+                Fragment fr = getSupportFragmentManager().findFragmentByTag("IDUSER");
+                if (fr != null && fr.isVisible()) {
+                    getSupportFragmentManager()
+                            .beginTransaction().setTransition(0).remove(fr).disallowAddToBackStack().show(fr).commit();
+
+                    Usfragment = new UsersFragment();
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.frame_stage,Usfragment, "USER")
+                            .setCustomAnimations(R.anim.anim_iz_to_der,0)
+                            .show(Usfragment)
+                            .commit();
+               }
+            }
+
+        return false;
     }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 

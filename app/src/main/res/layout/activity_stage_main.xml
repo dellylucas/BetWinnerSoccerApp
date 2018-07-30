@@ -9,11 +9,15 @@
     <FrameLayout
         android:id="@+id/frame_stage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
+        android:layout_height="match_parent"
+        android:background="#e780e0">
 
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/idusersFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <ListView
         android:id="@+id/leftDrawe"
         android:layout_width="240dp"
