@@ -28,6 +28,8 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
     private int IsAdm;
     private UsersFragment Usfragment;
     private TableFragment Tabfragment;
+    private PartFragment Parfragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
         fragmentManager = getSupportFragmentManager();
         Usfragment = new UsersFragment();
         Tabfragment = new TableFragment();
+        Parfragment = new PartFragment();
         Intent intent = getIntent();
 
         IsAdm = (int) intent.getIntExtra("ADM",-1);
@@ -54,8 +57,7 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
         mDrawerList.setOnItemClickListener(this);
         super.setTitle("Partidos");
 
-       /* UsersFragment Usfragment = new UsersFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_stage,Usfragment).commit();*/
+       getSupportFragmentManager().beginTransaction().add(R.id.frame_stage,Parfragment).commit();
     }
 
     @Override
@@ -85,6 +87,9 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
         switch (mGeneralTitle.get(position)){
             case "Partidos":
                 MenuReGenerate("Partidos");
+                Parfragment = new PartFragment();
+                tranu.replace(R.id.frame_stage,Parfragment, "PART");
+                tranu.commit();
                 break;
             case "Usuarios":
                 MenuReGenerate("Usuarios");
