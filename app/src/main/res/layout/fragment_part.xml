@@ -7,13 +7,12 @@
     tools:context=".PartFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="126dp"
-        android:text="partidos!" />
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recicladorpart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="3dp"
+        android:scrollbars="vertical" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/butaddparty"
