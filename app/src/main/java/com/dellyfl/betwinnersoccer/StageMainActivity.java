@@ -136,6 +136,7 @@ public class StageMainActivity extends AppCompatActivity implements ListView.OnI
                             .setCustomAnimations(R.anim.anim_iz_to_der,0)
                             .show(Usfragment)
                             .commit();
+                    setTitle("Usuarios");
                }
             }
 

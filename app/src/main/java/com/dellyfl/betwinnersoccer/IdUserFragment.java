@@ -24,7 +24,6 @@ public class IdUserFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_id_user, container, false);
-
         return view;
     }
 

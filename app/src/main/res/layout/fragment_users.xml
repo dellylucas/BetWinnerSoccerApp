@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UsersFragment"
-    android:background="#e780e0">
+    android:background="#e7d49e">
 
 
     <ListView
